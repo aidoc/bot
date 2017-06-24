@@ -7,6 +7,10 @@
     "botbuilder": "^3.7.0",
     "botbuilder-azure": "3.0.2",
     "botbuilder-calling": "^3.0.1"
+    "needle": "^1.4.3",
+    "node-uuid": "^1.4.7",
+    "request": "^2.79.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "restify": "^4.1.1"
