@@ -79,8 +79,8 @@ function streamToText(stream, resolve, reject) {
         } else if (response.statusCode !== 200) {
             reject(body);
         } else {
-	    console.log("Received JSON:\n" + body);
-            resolve(JSON.parse(body).header.name);
+            //resolve(JSON.parse(body).header.name);
+	    resolve(body);
         }
     }));
 }

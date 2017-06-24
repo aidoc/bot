@@ -44,7 +44,8 @@ var bot = new builder.UniversalBot(connector, function (session) {
         var stream = getAudioStreamFromMessage(session.message);
         speechService.getTextFromAudioStream(stream)
             .then(function (text) {
-                session.send(processText(text));
+                //session.send(processText(text));
+		session.send(text);
             })
             .catch(function (error) {
                 session.send('Oops! Something went wrong. Try again later.');
