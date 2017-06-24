@@ -1,36 +1,22 @@
 "use strict";
 var builder = require("botbuilder");
 var botbuilder_azure = require("botbuilder-azure");
-var calling = require('botbuilder-calling');
 var path = require('path');
 
 var useEmulator = (process.env.NODE_ENV == 'development');
 
-//var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure.BotServiceConnector({
-var connector = new calling.CallConnector({
+var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure.BotServiceConnector({
     appId: process.env['MicrosoftAppId'],
     appPassword: process.env['MicrosoftAppPassword'],
-    // TODO get this from the environment?
-    callbackUrl: 'https://aidoc.azurewebsites.net/api/messages?code=Slj/jXTFGQAuTwVNjHuRhrKxhfcD2EIyGYFqad4wyRIwOa6IRGJ1Sw=='
-    //stateEndpoint: process.env['BotStateEndpoint'],
-    //openIdMetadata: process.env['BotOpenIdMetadata']
+    stateEndpoint: process.env['BotStateEndpoint'],
+    openIdMetadata: process.env['BotOpenIdMetadata']
 });
 
-// text chatbot "hello world"
-//var bot = new builder.UniversalBot(connector);
-//bot.dialog('/', function (session) {
-//    session.send('You said ' + session.message.text);
-//});
+var bot = new builder.UniversalBot(connector);
+bot.localePath(path.join(__dirname, './locale'));
 
-var bot = new calling.UniversalCallBot(connector);
-
-// not sure if this applies to bots in Azure
-//bot.localePath(path.join(__dirname, './locale'));
-//server.post('/api/calls', connector.listen());
-
-// Add root dialog
 bot.dialog('/', function (session) {
-    session.send('Watson... come here!');
+    session.send('You said ' + session.message.text);
 });
 
 if (useEmulator) {
@@ -43,3 +29,4 @@ if (useEmulator) {
 } else {
     module.exports = { default: connector.listen() }
 }
+
