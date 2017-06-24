@@ -21,7 +21,7 @@ var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure
 //});
 
 var bot = new calling.UniversalCallBot(connector);
-server.post('/api/calls', connector.listen());
+//server.post('/api/calls', connector.listen());
 
 // Add root dialog
 bot.dialog('/', function (session) {
