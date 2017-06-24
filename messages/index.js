@@ -10,8 +10,10 @@ var useEmulator = (process.env.NODE_ENV == 'development');
 var connector = new calling.CallConnector({
     appId: process.env['MicrosoftAppId'],
     appPassword: process.env['MicrosoftAppPassword'],
-    stateEndpoint: process.env['BotStateEndpoint'],
-    openIdMetadata: process.env['BotOpenIdMetadata']
+    // TODO get this from the environment?
+    callbackUrl: 'https://aidoc.azurewebsites.net/api/messages?code=Slj/jXTFGQAuTwVNjHuRhrKxhfcD2EIyGYFqad4wyRIwOa6IRGJ1Sw=='
+    //stateEndpoint: process.env['BotStateEndpoint'],
+    //openIdMetadata: process.env['BotOpenIdMetadata']
 });
 
 // text chatbot "hello world"
