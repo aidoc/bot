@@ -12,11 +12,19 @@ var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure
     openIdMetadata: process.env['BotOpenIdMetadata']
 });
 
-var bot = new builder.UniversalBot(connector);
-bot.localePath(path.join(__dirname, './locale'));
+//var bot = new builder.UniversalBot(connector);
+//bot.localePath(path.join(__dirname, './locale'));
 
+//bot.dialog('/', function (session) {
+//    session.send('You said ' + session.message.text);
+//});
+
+var bot = new calling.UniversalCallBot(connector);
+server.post('/api/calls', connector.listen());
+
+// Add root dialog
 bot.dialog('/', function (session) {
-    session.send('You said ' + session.message.text);
+    session.send('Watson... come here!');
 });
 
 if (useEmulator) {
